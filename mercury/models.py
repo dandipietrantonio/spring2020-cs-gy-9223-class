@@ -76,6 +76,17 @@ class FuelLevelSensor(models.Model):
     def __str__(self):  # pragma: no cover
         return FuelLevelSensor.__name__
 
+class WindSpeedSensor(models.Model):
+    """This model represents the wind speed sensors that we expect to
+    be potentially available in the future in the NYU Motorsports
+    Racing vehicle."""
+
+    created_at = models.DateTimeField()
+    #Wind speed 
+    #Measured in mph
+    current_wind_speed = models.FloatField(default=0)
+    def __str__(self):  # pragma: no cover
+        return WindSpeedSensor.__name__
 
 class EventCodeAccess(models.Model):
     """This model stores the information about events. When an event is
@@ -88,3 +99,4 @@ class EventCodeAccess(models.Model):
 
     def __str__(self):  # pragma: no cover
         return EventCodeAccess.__name__
+
