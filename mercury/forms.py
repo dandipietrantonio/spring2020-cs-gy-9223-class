@@ -7,6 +7,7 @@ from mercury.models import (
     WheelSpeedSensor,
     SuspensionSensor,
     FuelLevelSensor,
+    WindSpeedSensor,
 )
 
 

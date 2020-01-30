@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             "mercury",
-            "0004_accelerationsensor_fuellevelsensor_suspensionsensor_temperaturesensor_wheelspeedsensor",  # noqa
+            "0004_accelerationsensor_fuellevelsensor_suspensionsensor_temperaturesensor_wheelspeedsensor_windspeedsensor",  # noqa
         )
     ]
 

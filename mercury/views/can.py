@@ -23,6 +23,7 @@ from ..models import (
     WheelSpeedSensor,
     SuspensionSensor,
     FuelLevelSensor,
+    WindSpeedSensor,
 )
 
 log = logging.getLogger(__name__)
@@ -128,6 +129,9 @@ def _create_populated_sensor(sensor, data):
         )
 
     if sensor is FuelLevelSensor:
+        return sensor(created_at=created_at, current_fuel_level=data["data"])
+
+    if sensor is WindSpeedSensor:
         return sensor(created_at=created_at, current_fuel_level=data["data"])
 
 

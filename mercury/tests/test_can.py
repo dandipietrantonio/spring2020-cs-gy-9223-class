@@ -15,6 +15,7 @@ from mercury.models import (
     WheelSpeedSensor,
     SuspensionSensor,
     FuelLevelSensor,
+    WindSpeedSensor,
 )
 
 EXAMPLE_CAN_MSG_EXTENDED = (
