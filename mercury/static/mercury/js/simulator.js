@@ -394,8 +394,8 @@ $(function () {
             url: "", // the endpoint
             type: "POST", // http method
             data: {
-                created_at_wns: dateTime_wns,
                 current_wind_speed: $('#post-current-wind-speed').val(),
+                created_at_wns: dateTime_wns,
             }, // data sent with the post request
             // handle a successful response
             success: function () {

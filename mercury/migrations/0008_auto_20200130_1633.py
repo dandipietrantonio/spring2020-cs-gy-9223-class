@@ -11,13 +11,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RenameField(
-            model_name='windspeedsensor',
+            model_name='WindSpeedSensor',
             old_name='wind_speed',
             new_name='current_wind_speed',
-        ),
-        migrations.AlterField(
-            model_name="simulateddata",
-            name="current_wind_speed",
-            field=models.FloatField(default=0),
         ),
     ]
