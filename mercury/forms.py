@@ -110,10 +110,10 @@ class WindSpeedForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "created_at": forms.DateTimeInput(
-                attrs={"id": "post-created-at_fl", "required": True}
+                attrs={"id": "post-created-at_wns", "required": True}
             ),
             "current_wind_speed": forms.NumberInput(
-                attrs={"id": "post-current-fuel-level", "required": True}
+                attrs={"id": "post-current-wind-speed", "required": True}
             ),
         }
 

@@ -132,7 +132,7 @@ def _create_populated_sensor(sensor, data):
         return sensor(created_at=created_at, current_fuel_level=data["data"])
 
     if sensor is WindSpeedSensor:
-        return sensor(created_at=created_at, current_fuel_level=data["data"])
+        return sensor(created_at=created_at, current_wind_speed=data["data"])
 
 
 @csrf_exempt

@@ -341,14 +341,14 @@ class TestSimulatorPost(TestCase):
         windspeed = 22
         response = self.client.post(
             reverse(self.simulator_url),
-            data={"created_at_ws": CREATED_AT, "current_wind_speed": windspeed}
+            data={"created_at_wns": CREATED_AT, "current_wind_speed": windspeed}
         )
         self.assertEqual(201, response.status_code)
         self.assertTemplateUsed("simulator.html")
 
         foo = WindSpeedSensor.objects.get(
-        created_at=CREATED_AT, current_wind_speed=windspeed
+            created_at=CREATED_AT, current_wind_speed=windspeed
         )
         self.assertEqual(EXPECTED_CREATED_AT, foo.created_at)
-        self.assertEqual(windspeed, foo.current_fuel_level)
+        self.assertEqual(windspeed, foo.current_wind_speed)
 

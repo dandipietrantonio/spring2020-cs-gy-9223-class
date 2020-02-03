@@ -22,12 +22,13 @@ class DashboardView(TemplateView):
         ws_data = WheelSpeedSensor.objects.all().order_by("-created_at")
         ss_data = SuspensionSensor.objects.all().order_by("-created_at")
         fl_data = FuelLevelSensor.objects.all().order_by("-created_at")
-        ws_data = WindSpeedSensor.objects.all().order_by("-created_at")
+        wns_data = WindSpeedSensor.objects.all().order_by("-created_at")
         context = {
             "temp_data": temp_data,
             "accel_data": accel_data,
             "ws_data": ws_data,
             "ss_data": ss_data,
             "fl_data": fl_data,
+            "wns_data": wns_data,
         }
         return render(request, self.template_name, context)

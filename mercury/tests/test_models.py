@@ -36,7 +36,7 @@ def create_simulated_data_objects():
         current_fuel_level=TEST_FUEL, created_at=datetime.datetime.now()
     )
     WindSpeedSensor.objects.create(
-        curret_wind_speed=TEST_WINDSPEED, create_at=datetime.datetime.now()
+        current_wind_speed=TEST_WINDSPEED, create_at=datetime.datetime.now()
     )
     EventCodeAccess.objects.create(event_code=TEST_EVENT_CODE, enabled=False)
 
@@ -66,7 +66,7 @@ class TestSensorModels(TestCase):
         self.assertEqual(foo.current_fuel_level, TEST_FUEL)
 
     def test_wind_speed(self):
-        foo = FuelLevelSensor.objects.get(current_fuel_level=TEST_WINDSPEED)
+        foo = WindSpeedSensor.objects.get(current_wind_speed=TEST_WINDSPEED)
         self.assertEqual(foo.current_wind_speed, TEST_WINDSPEED)
 
     def test_event_code_access(self):

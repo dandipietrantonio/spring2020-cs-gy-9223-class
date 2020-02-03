@@ -356,7 +356,76 @@ $(function () {
             button_counter_fl = 0;
         }
     }
+    // Wind Speed Sensor
+    let button_counter_wns = 0;
+    let buttonpressed_wns;
+    let interval_var_wns;
+    $('.submitbutton_wns,.submitbutton_all').click(function () {
+        buttonpressed_wns = $(this).attr('name')
+    });
+    $('#WindSpeedForm,#AllSensorsForm').on('submit', function (event) {
+        event.preventDefault();
+        if (buttonpressed_wns == "Continuous" && button_counter_wns != 1) {
+            console.log("Continuous Submission enabled for Wind Speed panel");
+            create_post_wns();
+            button_counter_wns = 1;
+            interval_var_wns = setInterval(create_post_wns, 2000);
+            setTimeout(clear_interval_wns, timeOut);
+        } else if (buttonpressed_wns == "Once") {
+            console.log("Wind Speed Submit Once button was pressed.");
+            if (interval_var_wns) {
+                clearInterval(interval_var_wns);
+                button_counter_wns = 0;
+            }
+            create_post_wns();
+        } else if (buttonpressed_wns == "Stop") {
+            console.log("Stopping continuous submission for Wind Speed panel.");
+            if (interval_var_wns) {
+                clearInterval(interval_var_wns);
+                button_counter_wns = 0;
+            }
+        }
+    });
 
+    function create_post_wns() {
+        console.log("Entered create_post_wns() wns function.");
+        let dateTime_wns = getDateTimenow();
+        $.ajax({
+            url: "", // the endpoint
+            type: "POST", // http method
+            data: {
+                created_at_wns: dateTime_wns,
+                current_wind_speed: $('#post-current-wind-speed').val(),
+            }, // data sent with the post request
+            // handle a successful response
+            success: function () {
+                let current_wind_speed = parseFloat($('#post-current-wind-speed').val());
+                if (current_wind_speed <= 10) {
+                    current_wind_speed += 90;
+                } else {
+                    current_wind_speed -= getRandomNumber(0, 5);
+                }
+                $('#post-created-at_wns').val(dateTime_wns);
+                $('#post-current-wind-speed').val(roundOffAndParse(current_wind_speed));
+
+                console.log("POSTing was successful for WNS"); // another sanity check
+            },
+
+            // handle a non-successful response
+            error: function (xhr, errmsg, err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg +
+                    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    }
+
+    function clear_interval_wns() {
+        if (interval_var_wns) {
+            clearInterval(interval_var_wns);
+            button_counter_wns = 0;
+        }
+    }
     // This function returns current date time in the format "yyyy-mm-dd hh:min:ss"
     function getDateTimenow() {
         var now = new Date();
