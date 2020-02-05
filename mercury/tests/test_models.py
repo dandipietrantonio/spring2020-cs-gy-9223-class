@@ -37,7 +37,7 @@ def create_simulated_data_objects():
         current_fuel_level=TEST_FUEL, created_at=datetime.datetime.now()
     )
     WindSpeedSensor.objects.create(
-        current_wind_speed=TEST_WIND_SPEED, create_at=datetime.datetime.now()
+        current_wind_speed=TEST_WIND_SPEED, created_at=datetime.datetime.now()
     )
     EventCodeAccess.objects.create(event_code=TEST_EVENT_CODE, enabled=False)
 
